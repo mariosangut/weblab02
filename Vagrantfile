@@ -40,11 +40,11 @@ Vagrant.configure("2") do |config|
 
 
       # Bind
-      cp -v config/dns/named /etc/default/
-      cp -v config/dns/named.conf.options /etc/bind
-      cp -v config/dns/named.conf.local /etc/bind
-      cp -v config/dns/db.192.168.56 /var/lib/bind
-      cp -v config/dns/db.sistema.sol /var/lib/bind
+      cp -v /vagrant/config/dns/named /etc/default/
+      cp -v /vagrant/config/dns/named.conf.options /etc/bind
+      cp -v /vagrant/config/dns/named.conf.local /etc/bind
+      cp -v /vagrant/config/dns/db.192.168.56 /var/lib/bind
+      cp -v /vagrant/config/dns/db.sistema.sol /var/lib/bind
 
       systemctl restart bind9
       systemctl status bind9 || true
@@ -78,11 +78,11 @@ Vagrant.configure("2") do |config|
       echo "search sistema.sol" >> /etc/resolv.conf
       
       # Root 
-      cp -r config/tierra/discovery.sistema.sol /var/www/
+      cp -r /vagrant/config/tierra/discovery.sistema.sol /var/www/
     
       # VirtualHost 
-      cp -v config/tierra/apache2.conf /etc/apache2
-      cp -v config/tierra/discovery.sistema.sol.conf /etc/apache2/sites-available
+      cp -v /vagrant/config/tierra/apache2.conf /etc/apache2
+      cp -v /vagrant/config/tierra/discovery.sistema.sol.conf /etc/apache2/sites-available
       a2ensite discovery.sistema.sol.conf
       
       # Habilitar modulos necesarios
