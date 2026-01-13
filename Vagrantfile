@@ -34,16 +34,17 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-get install -y bind9 bind9-utils bind9-doc
 
-      # DNS 
-      cp -v config/dns/resolved.conf /etc/systemd/resolved.conf
-      systemctl restart systemd-resolved
-      ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+      # DNS
+      echo "nameserver 127.0.0.1" > /etc/resolv.conf
+      echo "search sistema.sol" >> /etc/resolv.conf
+
 
       # Bind
       cp -v config/dns/named /etc/default/
       cp -v config/dns/named.conf.options /etc/bind
       cp -v config/dns/named.conf.local /etc/bind
-      cp -v config/dns/db.* /var/lib/bind
+      cp -v config/dns/db.192.168.56 /var/lib/bind
+      cp -v config/dns/db.sistema.sol /var/lib/bind
 
       systemctl restart bind9
       systemctl status bind9 || true
@@ -72,11 +73,10 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-get install -y apache2
 
-      # DNS 
-      cp -v config/tierra/resolved.conf /etc/systemd/resolved.conf
-      systemctl restart systemd-resolved
-      ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-
+      # DNS
+      echo "nameserver 192.168.56.100" > /etc/resolv.conf
+      echo "search sistema.sol" >> /etc/resolv.conf
+      
     
       # VirtualHost 
       cp -v config/tierra/apache2.conf /etc/apache2
