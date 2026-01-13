@@ -77,6 +77,8 @@ Vagrant.configure("2") do |config|
       echo "nameserver 192.168.56.100" > /etc/resolv.conf
       echo "search sistema.sol" >> /etc/resolv.conf
       
+      # Root 
+      cp -r config/tierra/discovery.sistema.sol /var/www/
     
       # VirtualHost 
       cp -v config/tierra/apache2.conf /etc/apache2
