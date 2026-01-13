@@ -1,4 +1,4 @@
-# Web Lab 2 – DNS and Apache Authentication
+# Weblab 02 - Basic and Digest Authentication
 
 ## Overview
 
