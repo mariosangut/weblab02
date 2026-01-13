@@ -34,12 +34,12 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-get install -y bind9 bind9-utils bind9-doc
 
-      # DNS local correcto (el servidor se apunta a sí mismo)
+      # DNS 
       cp -v config/dns/resolved.conf /etc/systemd/resolved.conf
       systemctl restart systemd-resolved
       ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-      # Configuración de Bind
+      # Bind
       cp -v config/dns/named /etc/default/
       cp -v config/dns/named.conf.options /etc/bind
       cp -v config/dns/named.conf.local /etc/bind
@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-get install -y apache2
 
-      # DNS correcto apuntando al servidor dns
+      # DNS 
       cp -v config/tierra/resolved.conf /etc/systemd/resolved.conf
       systemctl restart systemd-resolved
       ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
       cp -v config/tierra/discovery.sistema.sol.conf /etc/apache2/sites-available
       a2ensite discovery.sistema.sol.conf
 
-      #Servicios 
+      # Servicios 
       systemctl reload apache2
       systemctl status apache2 || true
     SHELL
