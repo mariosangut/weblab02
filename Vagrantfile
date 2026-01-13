@@ -84,6 +84,11 @@ Vagrant.configure("2") do |config|
       cp -v config/tierra/apache2.conf /etc/apache2
       cp -v config/tierra/discovery.sistema.sol.conf /etc/apache2/sites-available
       a2ensite discovery.sistema.sol.conf
+      
+      # Habilitar modulos necesarios
+      a2enmod auth_basic
+      a2enmod authz_groupfile
+      a2enmod auth_digest
 
       # Servicios 
       systemctl reload apache2
